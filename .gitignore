@@ -1,0 +1,10 @@
+# Local editor/tool settings
+.claude/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel

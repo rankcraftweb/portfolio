@@ -1,0 +1,743 @@
+/* ===== 1. CSS VARIABLES: one place for colors, fonts, and sizes ===== */
+:root {
+  --bg: #0d0f12;           /* page background, almost black */
+  --surface: #14171c;      /* cards and tinted sections */
+  --surface-2: #1a1e24;    /* hover / inner boxes */
+  --text: #e6e8eb;
+  --muted: #98a1ac;
+  --line: #252a32;
+  --accent: #ff7a45;       /* orange, the one bold color */
+  --accent-dim: rgb(255 122 69 / 0.12);
+  --green: #3ecf8e;
+
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  --radius: 12px;
+  --max-width: 1040px;
+}
+
+/* ===== 2. RESET: consistent starting point across browsers ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* width includes padding and border */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;       /* smooth scrolling when a nav link is clicked */
+  scroll-padding-top: 72px;      /* so the sticky header doesn't cover headings */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* <em> inside headings = accent color (no italics) */
+h1 em,
+h2 em,
+.big em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* Visible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ===== 3. LAYOUT HELPERS ===== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;      /* centered */
+  padding: 0 16px;     /* side spacing for mobile */
+}
+
+@media (min-width: 700px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* Heading on the left, content on the right (stacks on mobile) */
+.two-col {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr 2.4fr;
+    gap: 48px;
+  }
+}
+
+/* ===== 4. HEADER and NAVIGATION (Flexbox) ===== */
+.site-header {
+  position: sticky;    /* stays at the top while scrolling */
+  top: 0;
+  z-index: 10;
+  background: rgb(13 15 18 / 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between; /* name left, links right */
+  align-items: center;
+  height: 60px;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* The resume link looks like a small outlined button */
+.nav-links .nav-cta {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.nav-links .nav-cta:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Two-line "hamburger" button, built from two spans */
+.menu-toggle {
+  display: none; /* hidden on desktop, shown on mobile */
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.25s;
+}
+
+.menu-toggle span:first-child { top: 15px; }
+.menu-toggle span:last-child  { top: 23px; }
+
+/* When open, the two lines rotate into an X */
+.menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:last-child  { transform: translateY(-4px) rotate(-45deg); }
+
+/* ===== 5. HERO (centered) ===== */
+.hero {
+  padding: 80px 0 88px;
+  text-align: center;
+  /* soft orange glow behind the headline */
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgb(255 122 69 / 0.1), transparent 70%);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding: 120px 0 128px;
+  }
+}
+
+.hero-inner {
+  max-width: 760px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Pulsing green "available" dot */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgb(62 207 142 / 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 8px rgb(62 207 142 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(62 207 142 / 0); }
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem); /* scales with screen size */
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.hero h1 em {
+  display: block;      /* colored part goes on its own line */
+}
+
+.lead {
+  font-size: 1.05rem;
+  max-width: 36em;
+  color: var(--muted);
+  margin: 0 auto 32px;   /* auto side margins center the paragraph box */
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ===== 6. BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0d0f12;
+}
+
+.btn-primary:hover {
+  background: #ff956b;
+}
+
+.btn-outline {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.btn-outline:hover {
+  border-color: var(--muted);
+}
+
+/* ===== 7. SECTIONS ===== */
+.section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-tint {
+  background: var(--surface);
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.section-dark .section-title {
+  margin-bottom: 36px;
+}
+
+/* ===== 8. ABOUT ===== */
+.prose p {
+  color: var(--muted);
+  max-width: 40em;
+}
+
+.prose p + p {
+  margin-top: 16px;
+}
+
+.prose .big {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ===== 9. WHAT I'M LOOKING FOR ===== */
+.roles li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2px 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.roles li:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.roles strong {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.roles span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.note {
+  margin-top: 20px;
+  color: var(--muted);
+  max-width: 40em;
+}
+
+/* ===== 10. JOURNEY TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+/* The vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline li {
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.timeline li:last-child {
+  padding-bottom: 0;
+}
+
+/* The dot on the line for each step */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+/* The last step ("Now") gets a filled dot */
+.timeline li.now::before {
+  background: var(--accent);
+}
+
+.timeline time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.timeline h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 2px 0 4px;
+}
+
+.timeline p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 38em;
+}
+
+/* ===== 11. PROJECTS ===== */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* The first project spans both columns */
+  .project-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.project:hover {
+  border-color: rgb(255 122 69 / 0.5);
+  background: var(--surface-2);
+}
+
+.project-type {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.project h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.project p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.learned {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+}
+
+.learned strong {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.tags li {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+/* Small headline score, e.g. "99 mobile performance" */
+.project .score {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.score span {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.project-link {
+  margin-top: auto;          /* pins the link to the bottom of the card */
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== 12. SKILLS ===== */
+.skills div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.skills div:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.skills h3 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.skills p {
+  font-size: 0.95rem;
+}
+
+/* ===== CERTIFICATIONS ===== */
+.section-intro {
+  color: var(--muted);
+  margin: 8px 0 32px;
+}
+
+.cert-grid {
+  display: grid;
+  /* as many 240px+ columns as fit: 3 on desktop, 1 on phones */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.cert {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+
+.cert:hover {
+  border-color: rgb(255 122 69 / 0.5);
+}
+
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.cert h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.cert time {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.cert a {
+  margin-top: auto;          /* pins the link to the bottom of the card */
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cert a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 13. CONTACT ===== */
+.section-accent {
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgb(255 122 69 / 0.12), transparent 70%);
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.contact p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* The email address as the main call to action */
+.contact-email {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow-wrap: anywhere;   /* long email wraps instead of overflowing on phones */
+  transition: border-color 0.2s;
+}
+
+.contact-email:hover {
+  border-color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+/* ===== 14. FOOTER ===== */
+.site-footer {
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ===== 15. SCROLL REVEAL (progressive enhancement) =====
+   Only runs in browsers that support scroll-driven animations,
+   and only if the user hasn't asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes rise {
+      from {
+        opacity: 0;
+        translate: 0 32px;
+      }
+    }
+
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();          /* must come after the shorthand */
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+/* Turn off the looping animation for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
+
+/* ===== 16. RESPONSIVE: screens 760px and narrower (mobile) ===== */
+@media (max-width: 760px) {
+  .menu-toggle {
+    display: block;     /* show the menu button */
+    margin-left: auto;  /* push to the right */
+  }
+
+  .nav-links {
+    display: none;  /* hide links until the menu is opened */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 16px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-links.open {
+    display: flex;  /* JavaScript adds the "open" class */
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .nav-links .nav-cta {
+    margin-top: 8px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+}

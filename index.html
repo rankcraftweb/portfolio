@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Tells the browser to use UTF-8 so special characters and emoji display correctly -->
+  <meta charset="UTF-8">
+  <!-- Required for mobile: page width = screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO: title and description shown in Google results -->
+  <title>Jan Christopher Buen | Web Developer</title>
+  <meta name="description" content="Jan Christopher Buen is a web developer from the Philippines who builds WordPress themes, plugins, and Next.js apps. Open to remote roles.">
+  <!-- Dark mode: tells the browser to use dark scrollbars and form controls -->
+  <meta name="color-scheme" content="dark">
+  <!-- Fonts: Geist for text, Geist Mono for code-style labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER: name and navigation -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="logo">Jan Christopher Buen</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="Jan_Christopher_Buen_Resume.pdf" class="nav-cta" download>Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: centered personal intro -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="status"><span class="dot"></span> Open to remote, full-time roles</p>
+        <h1>Hi, I'm Jan. <em>I build things for the web.</em></h1>
+        <p class="lead">
+          A web developer from the Philippines. I write custom WordPress themes and plugins,
+          build apps with Next.js, and I get a little obsessed with how fast a page loads.
+        </p>
+        <div class="hero-actions">
+          <a href="Jan_Christopher_Buen_Resume.pdf" class="btn btn-primary" download>Download my resume</a>
+          <a href="#work" class="btn btn-outline">See what I've built</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT: my story, in my own words -->
+    <section id="about" class="section">
+      <div class="container two-col">
+        <h2 class="section-title">About me</h2>
+        <div class="prose reveal">
+          <p class="big">
+            I didn't come from computer science. I studied <em>mechanical technology</em>,
+            and I think that's why I like taking websites apart to see what makes them slow.
+          </p>
+          <p>
+            In 2026 I went all in on web development: HTML and CSS first, then JavaScript,
+            then React. I didn't want my learning to stay in tutorials, so I took on real
+            freelance clients and built my own products alongside the courses.
+          </p>
+          <p>
+            Today I build WordPress sites from scratch without page builders, write my own plugins
+            when existing ones fall short, and ship Next.js apps to Vercel. I also bring an SEO
+            background, so I think about how a site gets found, not just how it looks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOOKING FOR: what kind of job I want -->
+    <section class="section section-tint">
+      <div class="container two-col">
+        <h2 class="section-title">What I'm looking for</h2>
+        <div class="reveal">
+          <ul class="roles">
+            <li><strong>WordPress Developer</strong><span>Custom themes, plugins, PHP</span></li>
+            <li><strong>Front-end / Full-stack Developer</strong><span>React, Next.js, TypeScript</span></li>
+            <li><strong>Technical SEO Specialist</strong><span>Performance, schema, Core Web Vitals</span></li>
+          </ul>
+          <p class="note">
+            Remote, full-time. I'm used to working with US-based clients, and I care most about joining
+            a team where I can keep learning from people better than me.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY: a timeline of my year (experience + learning together) -->
+    <section id="journey" class="section">
+      <div class="container two-col">
+        <h2 class="section-title">My journey so far</h2>
+        <ol class="timeline reveal">
+          <li>
+            <time>Mar 2026</time>
+            <h3>Started learning web development</h3>
+            <p>Earned freeCodeCamp's Responsive Web Design certificate, plus SEO certifications from Ahrefs and HubSpot Academy.</p>
+          </li>
+          <li>
+            <time>2026</time>
+            <h3>First freelance clients</h3>
+            <p>Built full WordPress sites for real businesses, including a two-market real estate site with live MLS listings, and started hosting and maintaining them.</p>
+          </li>
+          <li>
+            <time>May 2026</time>
+            <h3>JavaScript, properly</h3>
+            <p>Finished freeCodeCamp's JavaScript certification and started building with React and Next.js.</p>
+          </li>
+          <li>
+            <time>2026</time>
+            <h3>Built my own product, solo</h3>
+            <p>Designed and shipped three connected apps: a hand-coded WordPress site, a Next.js audit tool on Vercel, and a lead-tracking system linked by REST APIs.</p>
+          </li>
+          <li>
+            <time>Aug 2026</time>
+            <h3>Front-End Development Libraries</h3>
+            <p>Completed freeCodeCamp's React-focused certification, plus Semrush's Technical SEO courses.</p>
+          </li>
+          <li class="now">
+            <time>Now</time>
+            <h3>Looking for my next team</h3>
+            <p>Five live projects in, and ready to work on something bigger with other developers.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WORK: projects, told as what I did and what I learned -->
+    <section id="work" class="section section-dark">
+      <div class="container">
+        <h2 class="section-title">Things I've built</h2>
+        <div class="work-grid">
+
+          <article class="project project-wide reveal">
+            <p class="project-type">Personal project · Solo</p>
+            <h3>RankCraft</h3>
+            <p>
+              My own three-part product: a WordPress site with a hand-coded theme, a Next.js tool that
+              calls Google's PageSpeed API on the server, and a system that saves every result as a lead.
+            </p>
+            <p class="learned"><strong>What I learned:</strong> how to design an app across two stacks and keep API keys off the browser.</p>
+            <ul class="tags"><li>PHP</li><li>Next.js</li><li>TypeScript</li><li>REST API</li><li>Vercel</li></ul>
+            <a href="https://rankcraftweb.com/portfolio/the-rankcraft-ecosystem/" class="project-link">Read the write-up</a>
+          </article>
+
+          <article class="project reveal">
+            <p class="project-type">Client · Real estate</p>
+            <h3>Rossi Moves The East</h3>
+            <p>A realtor's site for New York and Florida with live MLS listings through IDX Broker.</p>
+            <p class="learned"><strong>What I learned:</strong> keeping a site fast when third-party widgets want to slow it down.</p>
+            <ul class="tags"><li>WordPress</li><li>IDX Broker</li><li>Caching</li></ul>
+            <p class="score">99 <span>mobile performance</span></p>
+            <a href="https://rossimovestheeast.com/" class="project-link">Visit site</a>
+          </article>
+
+          <article class="project reveal">
+            <p class="project-type">Client · Dev company</p>
+            <h3>Nexora Technologies</h3>
+            <p>Designed and built from nothing, then I audited my own work and found five things to fix.</p>
+            <p class="learned"><strong>What I learned:</strong> "good" isn't finished. Measuring again after launch is where the real fixes are.</p>
+            <ul class="tags"><li>WordPress</li><li>Block theme</li><li>Accessibility</li></ul>
+            <p class="score">100 <span>accessibility</span></p>
+            <a href="https://nexorany.com/" class="project-link">Visit site</a>
+          </article>
+
+          <article class="project reveal">
+            <p class="project-type">Client · Training course</p>
+            <h3>Paver Sealing Academy</h3>
+            <p>A business with no website and no copy. I built the site and wrote every word on it.</p>
+            <p class="learned"><strong>What I learned:</strong> writing copy that answers the question a visitor is actually asking.</p>
+            <ul class="tags"><li>WordPress</li><li>Copywriting</li><li>Schema</li></ul>
+            <p class="score">100 <span>SEO</span></p>
+            <a href="https://paversealingacademy.com/" class="project-link">Visit site</a>
+          </article>
+
+          <article class="project reveal">
+            <p class="project-type">Client · Web agency</p>
+            <h3>Ironclad Sites</h3>
+            <p>An agency's own site built with Elementor on a custom child theme, tuned to perform like a hand-coded one.</p>
+            <p class="learned"><strong>What I learned:</strong> a page builder isn't slow by itself. What you load on top of it is.</p>
+            <ul class="tags"><li>WordPress</li><li>Elementor Pro</li><li>Child theme</li></ul>
+            <p class="score">97 <span>mobile performance</span></p>
+            <a href="https://ironclad-sites.com/" class="project-link">Visit site</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS: simple grouped list -->
+    <section class="section">
+      <div class="container two-col">
+        <h2 class="section-title">What I work with</h2>
+        <div class="skills reveal">
+          <div>
+            <h3>Code</h3>
+            <p>PHP · JavaScript · TypeScript · HTML · CSS</p>
+          </div>
+          <div>
+            <h3>Frameworks &amp; platforms</h3>
+            <p>WordPress (themes &amp; plugins) · React · Next.js · Tailwind CSS · Elementor</p>
+          </div>
+          <div>
+            <h3>SEO &amp; performance</h3>
+            <p>Technical SEO · Schema markup · Core Web Vitals · Lighthouse · Search Console · Screaming Frog</p>
+          </div>
+          <div>
+            <h3>Tools</h3>
+            <p>Git · GitHub · Vercel · Hostinger · SSH · WP-CLI</p>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <p>B.S. Industrial Technology, Mechanical Technology, Aurora State College of Technology</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS: each card links to the real certificate -->
+    <section id="certifications" class="section section-tint">
+      <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-intro">Every certificate below can be verified with the issuer.</p>
+        <ul class="cert-grid">
+          <li class="cert reveal">
+            <p class="cert-issuer">freeCodeCamp</p>
+            <h3>Responsive Web Design</h3>
+            <time>March 2026</time>
+            <a href="https://freecodecamp.org/certification/janchristopherbuen/responsive-web-design-v9" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">freeCodeCamp</p>
+            <h3>JavaScript</h3>
+            <time>May 2026</time>
+            <a href="https://freecodecamp.org/certification/janchristopherbuen/javascript-v9" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">freeCodeCamp</p>
+            <h3>Front-End Development Libraries</h3>
+            <time>August 2026</time>
+            <a href="https://freecodecamp.org/certification/janchristopherbuen/front-end-development-libraries-v9" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">Semrush Academy</p>
+            <h3>Technical SEO and AI Search Essentials</h3>
+            <time>2026</time>
+            <a href="https://static.semrush.com/academy/certificates/a730b13fe9/jan-christopher-buen_25.pdf" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">Semrush Academy</p>
+            <h3>SEO Toolkit Crash Course</h3>
+            <time>2026</time>
+            <a href="https://static.semrush.com/academy/certificates/01cfb57b77/jan-christopher-buen_25.pdf" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">Ahrefs</p>
+            <h3>Ahrefs' Marketing Platform</h3>
+            <time>March 2026</time>
+            <a href="https://ahrefs.com/academy/certificate/7698a4e0522f43c29026c61e921b49eb" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+          <li class="cert reveal">
+            <p class="cert-issuer">HubSpot Academy</p>
+            <h3>SEO Certified</h3>
+            <time>March 2026</time>
+            <a href="https://app-na2.hubspot.com/academy/achievements/mwqcd44w/en/1/jan-christopher-buen/seo" target="_blank" rel="noopener">Verify certificate</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-accent">
+      <div class="container contact">
+        <h2>Hiring? <em>Let's talk.</em></h2>
+        <p>I'm happy to walk through any project here, including the code behind it.</p>
+        <a href="mailto:buenjanchristopher@gmail.com" class="contact-email">buenjanchristopher@gmail.com</a>
+        <ul class="social-links">
+          <li><a href="https://linkedin.com/in/jan-christopher-buen">LinkedIn</a></li>
+          <li><a href="https://github.com/rankcraftweb">GitHub</a></li>
+          <li><a href="Jan_Christopher_Buen_Resume.pdf" download>Resume (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <!-- JavaScript fills in the year -->
+      <p>© <span id="year"></span> Jan Christopher Buen</p>
+      <p>Built by hand with HTML, CSS &amp; a little JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- Script goes last so the HTML loads first -->
+  <script src="script.js"></script>
+</body>
+</html>
