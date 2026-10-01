@@ -517,6 +517,14 @@ h2 em,
   text-decoration: underline;
 }
 
+/* A row of links when a project has more than one */
+.project .project-links {
+  margin-top: auto;          /* same bottom-pinning as a single link */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
 /* ===== 12. SKILLS ===== */
 .skills div {
   padding: 14px 0;
