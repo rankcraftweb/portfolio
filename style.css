@@ -677,7 +677,7 @@ h2 em,
 .footer-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 8px;
 }
 
